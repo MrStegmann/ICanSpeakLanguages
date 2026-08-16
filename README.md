@@ -82,11 +82,19 @@ To open the addon's interface, type the following slash command in your chat win
 ### Workflow
 
 1. **Manage Knowledge:** In the UI, select the languages your character has learned. These settings are saved per-character.
-2. **Speak a Language:** Choose an **Active Language** from the dropdown selector.
-3. **Chat:** Type normally in your chat channels. The addon will automatically format and obfuscate your messages.
+2. **Speak a Language:** Choose an **Active Language** from the dropdown selector (this is your default language).
+3. **Chat:** With the language parser activated, you have two options for speaking:
+
+   **A. Default Language**
+   Type in the chat normally without bracket escapes to use your default language (selected by left-clicking the minimap button or in the UI).
    - Example: A Blood Elf speaking Thalassian types `"Greetings, hero."` into `/say`.
    - Players who **know** Thalassian see: `[Thalassian] Greetings, hero.`
    - Players who **do not know** Thalassian see scrambled text: `[Thalassian] An'aniel, shala.`
+
+   **B. Inline Language Tags (Brackets)**
+   You can temporarily override your default language for a single message by placing the language name or its alias in brackets `[]` at the start of your text. Aliases can be found alongside the language names in the interface.
+   - Example: `[Vrykul] Hello, my little friend!`
+   - Example (using alias): `[da] Hello, but now in darnassian using alias`
 
 ## Configuration
 
