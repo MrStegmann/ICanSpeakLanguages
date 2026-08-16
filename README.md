@@ -134,8 +134,4 @@ Quickly toggle obfuscation for specific chat channels:
 - `/SpeakR` - Toggle Raid channel
 - `/SpeakRW` - Toggle Raid Warning channel
 
-### Debug / Utilities
-- `/SpeakDa [text]` - Directly hashes text to a Darnassian VSO sentence in your chat window (debug tool).
-  - *Example:* `/SpeakDa hello friend`
-
 _You can support me in https://ko-fi.com/mrstegmann_
