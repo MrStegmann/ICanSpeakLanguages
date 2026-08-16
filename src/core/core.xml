@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <!-- Base Definitions -->
+    <Script file="constants.lua"/>
+    <Script file="config.lua"/>
+    <Script file="RegExp.lua"/>
+
+    <!-- Modular Utilities -->
+    <Script file="..\utils\validators.lua"/>
+    <Script file="..\utils\language.lua"/>
+    <Script file="..\utils\text.lua"/>
+
+    <!-- Modular Core logic -->
+    <Script file="algorithm\main.lua"/>
+    <Script file="broadcast.lua"/>
+    <Script file="chat_splitter.lua"/>
+    <Script file="channels.lua"/>
+    <Script file="events.lua"/>
+
+    <!-- Backward Compatibility API -->
+    <Script file="engine.lua"/>
+</Ui>

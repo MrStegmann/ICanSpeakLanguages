@@ -1,0 +1,35 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <!-- Utils -->
+    <Script file="src\utils\utils.lua"/>
+
+    <!-- Locales -->
+    <Script file="src\locales\es_ES.lua"/>
+    <Script file="src\locales\en_EN.lua"/>
+    <Script file="src\locales\Locales.lua"/>
+
+    <!-- Data -->
+    <Script file="src\core\languages.lua"/>
+
+    <!-- Core Engine -->
+    <Include file="src\core\core.xml"/>
+
+    <!-- Language Configurations -->
+    <Script file="src\core\algorithm\generic.lua"/>
+    <Script file="src\core\algorithm\common.lua"/>
+    <Script file="src\core\algorithm\darnassian.lua"/>
+    <Script file="src\core\algorithm\draconic.lua"/>
+    <Script file="src\core\algorithm\eredun.lua"/>
+    <Script file="src\core\algorithm\kalimag.lua"/>
+    <Script file="src\core\algorithm\orcish.lua"/>
+    <Script file="src\core\algorithm\pandaren.lua"/>
+    <Script file="src\core\algorithm\sathyar.lua"/>
+    <Script file="src\core\algorithm\thalassian.lua"/>
+    <Script file="src\core\algorithm\vrykul.lua"/>
+
+    <Script file="src\core\commands.lua"/>
+
+    <!-- UI -->
+    <Script file="src\ui\frame.lua"/>
+    <Script file="src\ui\MainButton.lua"/>
+    <Script file="src\ui\MainFrame.lua"/>
+</Ui>
