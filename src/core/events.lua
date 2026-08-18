@@ -37,7 +37,6 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
     elseif event == "CHAT_MSG_ADDON" then
         local prefix, message, _channel, sender = ...
         if prefix == Constants.ADDON_PREFIX and message and sender then
-            print("ICanSpeakLanguages: CHAT_MSG_ADDON", prefix, message, _channel, sender)
             local senderShort = sender:match("^([^%-]+)") or sender
             if message:find("^SPEAKING:") then
                 local lang = message:sub(10)

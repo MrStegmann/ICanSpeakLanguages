@@ -3,6 +3,6 @@
 ## Notes: Word wrapper core engine and algorithms for language translation.
 ## Author: Patrick.JS
 ## Version: 1.0.0
-## SavedVariablesPerCharacter: ICanSpeakLanguagesDB
+## SavedVariables: ICanSpeakLanguagesDB
 
 manifest.xml
