@@ -12,24 +12,12 @@ local UI = addon.UI
 -------------------------------------------------------------------------------
 local menuFrame
 local configMenuFrame
-
 local function getSavedLanguagesList()
     local db = ICanSpeakLanguagesDB
-    if db and db.savedLanguages and #db.savedLanguages > 0 then
+    if db and db.savedLanguages then
         return db.savedLanguages
     end
-
-    -- Real default languages from languages data structure if no saved DB languages
-    local list = {}
-    local langData = addon.Languages or (addon.Engine and addon.Engine.Languages)
-    if langData and langData.factionLanguages and langData.factionLanguages.alliance then
-        for _, item in ipairs(langData.factionLanguages.alliance) do
-            table.insert(list, item.name)
-        end
-    else
-        table.insert(list, "Common")
-    end
-    return list
+    return {}
 end
 
 local function initializeMenu(_self, level, _menuList)
@@ -102,7 +90,7 @@ local function initializeConfigMenu(_self, level, _menuList)
 
     local L = addon.L or {}
     local db = ICanSpeakLanguagesDB or {}
-    db.channels = db.channels or addon.Config.DEFAULT_CHANNELS
+    db.channels = db.channels or {}
 
     local function getStateStr(state)
         return state and ("|cff33ff99" .. (L.STATE_ENABLED or "Enabled") .. "|r") or ("|cffff5555" .. (L.STATE_DISABLED or "Disabled") .. "|r")
@@ -115,11 +103,24 @@ local function initializeConfigMenu(_self, level, _menuList)
     addButton(info, level)
 
     -- Option 1: Toggle Activate Language Parse
+    local hasLangs = db and db.savedLanguages and #db.savedLanguages > 0
+    if not hasLangs then
+        db.enabled = false
+    end
     info = createInfo()
     info.text = string.format(L.MENU_ACTIVATE_PARSER or "Activate Language Parse: %s", getStateStr(db.enabled == true))
     info.notCheckable = true
     info.keepShownOnClick = true
     info.func = function(self)
+        local hasLangsCheck = db and db.savedLanguages and #db.savedLanguages > 0
+        if not hasLangsCheck then
+            db.enabled = false
+            local warnText = L.NO_LANGUAGES_WARNING or "You must have at least One language saved"
+            if addon.Utils and addon.Utils.Print then
+                addon.Utils.Print("|cffff5555" .. warnText .. "|r")
+            end
+            return
+        end
         db.enabled = not (db.enabled == true)
         if _G.ICanSpeakLanguagesParseCheck then _G.ICanSpeakLanguagesParseCheck:SetChecked(db.enabled) end
         if UI.UpdateMainButtonVisual then UI.UpdateMainButtonVisual() end

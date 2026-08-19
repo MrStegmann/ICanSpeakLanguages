@@ -4,7 +4,7 @@ addon.Locales = addon.Locales or {}
 addon.Locales.en_EN = {
     -- MainFrame UI
     TITLE = "ICanSpeakLanguages",
-    ACTIVATE_PARSER = "Activate Language Parse",
+    ACTIVATE_PARSER = "Activate Languages",
     AVAILABLE_LANGUAGES = "Available Languages:",
     SAVED_LANGUAGES = "Saved Languages:",
     CHANNELS = "Channels:",
@@ -27,7 +27,7 @@ addon.Locales.en_EN = {
     RIGHT_CLICK_PARSER = "Right Click Toggles Parser: ",
     SELECT_LANGUAGE_TITLE = "Select Language",
     OPEN_INTERFACE_FRAME = "Open Interface Frame",
-    MENU_ACTIVATE_PARSER = "Activate Language Parse: %s",
+    MENU_ACTIVATE_PARSER = "Activate Languages: %s",
     MENU_DUNGEON_MASTER = "Dungeon Master: %s",
     MENU_TRANSLATE_CHANNEL = "Translate %s: %s",
     MENU_SHOW_LANG = "Show Language in Chat: %s",
@@ -42,6 +42,7 @@ addon.Locales.en_EN = {
     UI_LANG_CHANGED_PRINT = "UI Language changed to: ",
     TYPED_LANG_MISMATCH = "The language you typed does not match any you know. Using: ",
     ADDON_LOADED_MSG = "ICanSpeakLanguages loaded. Use /ISpeakHelp to see all commands.",
+    NO_LANGUAGES_WARNING = "You must have at least one language",
 
     -- Command Outputs
     CMD_SPEAKP_MSG = "Party Channel: ",

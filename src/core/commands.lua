@@ -13,14 +13,25 @@ end
 
 local function getDB()
     ICanSpeakLanguagesDB = ICanSpeakLanguagesDB or {}
-    ICanSpeakLanguagesDB.channels = ICanSpeakLanguagesDB.channels or {
-        whisper = true,
-        say = true,
-        yell = true,
-        group = false,
-        raid = false,
-        raidWarning = false
-    }
+    local Config = addon.Config or {}
+    
+    if Config.DEFAULT_CHANNELS then
+        ICanSpeakLanguagesDB.channels = ICanSpeakLanguagesDB.channels or {}
+        for k, v in pairs(Config.DEFAULT_CHANNELS) do
+            if ICanSpeakLanguagesDB.channels[k] == nil then
+                ICanSpeakLanguagesDB.channels[k] = v
+            end
+        end
+    end
+    
+    if Config.DEFAULT_SETTINGS then
+        for k, v in pairs(Config.DEFAULT_SETTINGS) do
+            if ICanSpeakLanguagesDB[k] == nil then
+                ICanSpeakLanguagesDB[k] = v
+            end
+        end
+    end
+    
     ICanSpeakLanguagesDB.savedLanguages = ICanSpeakLanguagesDB.savedLanguages or {}
     return ICanSpeakLanguagesDB
 end
@@ -204,6 +215,13 @@ SLASH_ICSL_ISPEAK2 = "/ispeak"
 SLASH_ICSL_ISPEAK3 = "/ISPEAK"
 SlashCmdList["ICSL_ISPEAK"] = function()
     local db = getDB()
+    local hasLangs = db and db.savedLanguages and #db.savedLanguages > 0
+    if not hasLangs then
+        db.enabled = false
+        local warnText = getL().NO_LANGUAGES_WARNING or "You must have at least One language saved"
+        printMsg("|cffff5555" .. warnText .. "|r")
+        return
+    end
     db.enabled = not db.enabled
     printMsg((getL().CMD_ISPEAK_MSG or "Active Language Parse: ") .. getStateStr(db.enabled))
     refreshUI()

@@ -42,6 +42,7 @@ addon.Locales.es_ES = {
     UI_LANG_CHANGED_PRINT = "El idioma de la interfaz cambió a: ",
     TYPED_LANG_MISMATCH = "El idioma que escribiste no coincide con ninguno que conozcas. Usando: ",
     ADDON_LOADED_MSG = "ICanSpeakLanguages cargado. Usa /ISpeakHelp para ver todos los comandos.",
+    NO_LANGUAGES_WARNING = "Debes tener al menos un idioma",
 
     -- Command Outputs
     CMD_SPEAKP_MSG = "Canal de Grupo: ",

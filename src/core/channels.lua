@@ -78,7 +78,7 @@ function Channels.hookedSendChatMessage(text, chatType, languageID, target, ...)
         end
 
         local db = ICanSpeakLanguagesDB
-        if db and db.enabled ~= false then
+        if db and db.enabled then
             spokenLang = Language.GetLanguageTyped(text)
             local cleanText = text:gsub(RegExp.TAG_PATTERN, "")
 
@@ -133,7 +133,7 @@ function Channels.parseChatMessage(self, event, msg, sender, ...)
     end
 
     local db = ICanSpeakLanguagesDB
-    if db and db.enabled == false then
+    if not db or not db.enabled then
         return false, msg, sender, ...
     end
 

@@ -194,6 +194,11 @@ local function refreshLanguageLists()
         btn:Show()
     end
     savedListScrollChild:SetHeight(math.max(130, savedIdx * 22))
+
+    if _G.ICanSpeakLanguagesParseCheck then
+        local onShow = _G.ICanSpeakLanguagesParseCheck:GetScript("OnShow")
+        if onShow then onShow(_G.ICanSpeakLanguagesParseCheck) end
+    end
 end
 
 -------------------------------------------------------------------------------
@@ -270,16 +275,62 @@ local function createMainFrame()
 
     local checkLabel = checkButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     checkLabel:SetPoint("LEFT", checkButton, "RIGHT", 4, 1)
+    
+    local checkTooltipFrame = CreateFrame("Frame", nil, frame)
+    checkTooltipFrame:SetPoint("TOPLEFT", checkButton, "TOPLEFT", 0, 0)
+    checkTooltipFrame:SetPoint("BOTTOMRIGHT", checkButton, "BOTTOMRIGHT", 180, 0)
+    checkTooltipFrame:EnableMouse(true)
+    checkTooltipFrame:SetScript("OnEnter", function(self)
+        if GameTooltip then
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            local L = addon.L or {}
+            local warnText = L.NO_LANGUAGES_WARNING or "You must have at least one language"
+            GameTooltip:SetText(warnText, 1, 0.2, 0.2, 1, true)
+            GameTooltip:Show()
+        end
+    end)
+    checkTooltipFrame:SetScript("OnLeave", function(self)
+        if GameTooltip then GameTooltip:Hide() end
+    end)
+    checkTooltipFrame:Hide()
 
     checkButton:SetScript("OnShow", function(self)
         if ICanSpeakLanguagesDB then
-            self:SetChecked(ICanSpeakLanguagesDB.enabled == true)
+            local hasLangs = ICanSpeakLanguagesDB.savedLanguages and #ICanSpeakLanguagesDB.savedLanguages > 0
+            if not hasLangs then
+                self:Disable()
+                self:SetAlpha(0.5)
+                self:SetChecked(false)
+                ICanSpeakLanguagesDB.enabled = false
+                checkTooltipFrame:Show()
+            else
+                self:Enable()
+                self:SetAlpha(1.0)
+                self:SetChecked(ICanSpeakLanguagesDB.enabled == true)
+                checkTooltipFrame:Hide()
+            end
         else
+            self:Disable()
+            self:SetAlpha(0.5)
             self:SetChecked(false)
+            checkTooltipFrame:Show()
         end
     end)
+    
+    -- Removed OnEnter/OnLeave from checkButton itself since overlay handles it
 
     checkButton:SetScript("OnClick", function(self)
+        local hasLangs = ICanSpeakLanguagesDB and ICanSpeakLanguagesDB.savedLanguages and #ICanSpeakLanguagesDB.savedLanguages > 0
+        if not hasLangs then
+            self:SetChecked(false)
+            if ICanSpeakLanguagesDB then ICanSpeakLanguagesDB.enabled = false end
+            local L = addon.L or {}
+            local warnText = L.NO_LANGUAGES_WARNING or "You must have at least One language saved"
+            if addon.Utils and addon.Utils.Print then
+                addon.Utils.Print("|cffff5555" .. warnText .. "|r")
+            end
+            return
+        end
         local isChecked = self:GetChecked()
         if ICanSpeakLanguagesDB then
             ICanSpeakLanguagesDB.enabled = isChecked

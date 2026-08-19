@@ -24,7 +24,27 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         local loadedAddonName = ...
         if loadedAddonName == addonName then
             ICanSpeakLanguagesDB = ICanSpeakLanguagesDB or {}
-            ICanSpeakLanguagesDB.channels = ICanSpeakLanguagesDB.channels or addon.Config.DEFAULT_CHANNELS
+            
+            if addon.Config then
+                ICanSpeakLanguagesDB.channels = ICanSpeakLanguagesDB.channels or {}
+                if addon.Config.DEFAULT_CHANNELS then
+                    for k, v in pairs(addon.Config.DEFAULT_CHANNELS) do
+                        if ICanSpeakLanguagesDB.channels[k] == nil then
+                            ICanSpeakLanguagesDB.channels[k] = v
+                        end
+                    end
+                end
+                
+                if addon.Config.DEFAULT_SETTINGS then
+                    for k, v in pairs(addon.Config.DEFAULT_SETTINGS) do
+                        if ICanSpeakLanguagesDB[k] == nil then
+                            ICanSpeakLanguagesDB[k] = v
+                        end
+                    end
+                end
+            end
+            
+            ICanSpeakLanguagesDB.savedLanguages = ICanSpeakLanguagesDB.savedLanguages or {}
             
             if addon.Engine then
                 addon.Engine.db = ICanSpeakLanguagesDB
@@ -65,7 +85,7 @@ if C_ChatBubbles and C_ChatBubbles.GetAllChatBubbles then
         updateTimer = 0
 
         local db = ICanSpeakLanguagesDB
-        if db and db.enabled == false then return end
+        if not db or not db.enabled then return end
 
         local bubbles = C_ChatBubbles.GetAllChatBubbles()
         for _, bubble in ipairs(bubbles) do

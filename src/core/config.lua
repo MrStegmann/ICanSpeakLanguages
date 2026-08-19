@@ -9,5 +9,10 @@ addon.Config = {
         group = false,
         raid = false,
         raidWarning = false
+    },
+    DEFAULT_SETTINGS = {
+        enabled = false,
+        dungeonMaster = false,
+        showLanguageInChat = true
     }
 }
