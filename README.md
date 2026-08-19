@@ -20,47 +20,53 @@ Standard World of Warcraft client language mechanisms are rigid, race-locked, or
 The addon includes specific algorithmic dictionaries for several languages to provide immersive, linguistically accurate scrambling. Others use a fallback generic algorithm.
 
 ### Custom Algorithms
-- Common
-- Darnassian
-- Draconic
-- Eredun
-- Kalimag
-- Orcish
-- Pandaren
-- Shath'Yar
-- Thalassian
-- Vrykul
+
+| Language | Alias |
+|---|---|
+| Common | `[CO]` |
+| Darnassian | `[DA]` |
+| Draconic | `[DC]` |
+| Eredun | `[ER]` |
+| Kalimag | `[KA]` |
+| Orcish | `[OR]` |
+| Pandaren | `[PA]` |
+| Shath'Yar | `[SY]` |
+| Thalassian | `[TH]` |
+| Vrykul | `[VR]` |
 
 ### Generic Algorithm
-- Dwarven
-- Gnomish
-- Draenei
-- Zandali
-- Taur-ahe
-- Gutterspeak
-- Goblin
-- Shalassian
-- Vulpera
-- Titan
-- Nathrezim
-- Nerglish
-- Nazja
-- Nerubian
-- Qiraji
-- Mantid
-- Hozen
-- Furbolg (Ursine)
-- Gnoll
-- Mogu
-- Ogre
-- Ravenspeech
-- Tuskarr
-- Drogbar
-- Drust
-- Tol'vir
-- Pygmy
-- Sprite
-- Wildkin
+
+| Language | Alias |
+|---|---|
+| Dwarven | `[DW]` |
+| Gnomish | `[GN]` |
+| Draenei | `[DR]` |
+| Zandali | `[ZA]` |
+| Taur-ahe | `[TA]` |
+| Gutterspeak | `[GU]` |
+| Goblin | `[GO]` |
+| Shalassian | `[SH]` |
+| Vulpera | `[VU]` |
+| Titan | `[TI]` |
+| Nathrezim | `[NA]` |
+| Nerglish | `[NE]` |
+| Nazja | `[NZ]` |
+| Nerubian | `[NR]` |
+| Qiraji | `[QI]` |
+| Mantid | `[MA]` |
+| Hozen | `[HO]` |
+| Furbolg (Ursine) | `[FU]` |
+| Gnoll | `[GL]` |
+| Mogu | `[MO]` |
+| Ogre | `[OG]` |
+| Ravenspeech | `[RA]` |
+| Tuskarr | `[TU]` |
+| Drogbar | `[DB]` |
+| Drust | `[DT]` |
+| Tol'vir | `[TV]` |
+| Pygmy | `[PY]` |
+| Sprite | `[SP]` |
+| Wildkin | `[WI]` |
 ## Installation
 
 1. Download the latest version of the addon.
@@ -96,6 +102,9 @@ To open the addon's interface, type the following slash command in your chat win
    - Example: `[Vrykul] Hello, my little friend!`
    - Example (using alias): `[da] Hello, but now in darnassian using alias`
 
+> [!WARNING]
+> You must have at least one language saved in your **Known Languages** list before you can activate the language parser.
+
 ## Configuration
 
 You can individually enable or disable chat translation filtering for specific channels via UI checkboxes.
@@ -108,7 +117,7 @@ You can individually enable or disable chat translation filtering for specific c
 
 A shortcut button is anchored to the top-right of your main Chat Frame for quick access:
 - **Left-Click:** Opens the language selection menu to quickly swap your active language, and provides a shortcut to open the main Interface Frame.
-- **Right-Click:** Opens the quick configuration menu where you can toggle the parser, Dungeon Master mode, specific channel filters, and language tags.
+- **Right-Click:** Opens the quick configuration menu where you can toggle **Activate Languages**, Dungeon Master mode, specific channel filters, and language tags.
 
 ## Commands
 
@@ -129,7 +138,7 @@ Here is the full list of slash commands available in-game:
 - `/WhatCanISpeak` - Lists all available languages in the addon that you haven't learned yet.
 
 ### Toggles & Configuration
-- `/ISpeak` - Toggles the Active Language Parse on or off entirely.
+- `/ISpeak` - Toggles **Activate Languages** on or off entirely.
 - `/IAmDM` - Toggles Dungeon Master mode (only available to party/raid leaders).
 - `/ShowLangName` - Toggles whether the language name tag is shown in chat messages.
 
